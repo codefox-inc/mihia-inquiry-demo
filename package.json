@@ -1,6 +1,6 @@
 {
-	"name": "react-router-starter-template",
-	"description": "Build a full-stack web application with React Router 7.",
+	"name": "mihia-inquiry-demo",
+	"description": "小規模な社内向け問い合わせ管理ツール（デモ）",
 	"cloudflare": {
 		"label": "React Router Framework Starter",
 		"products": [
@@ -38,6 +38,7 @@
 		"typescript": "5.9.3",
 		"vite": "^6.0.0",
 		"vite-tsconfig-paths": "5.1.4",
+		"vitest": "^4.1.7",
 		"wrangler": "4.56.0"
 	},
 	"private": true,
@@ -48,7 +49,8 @@
 		"deploy": "wrangler deploy",
 		"dev": "react-router dev",
 		"preview": "npm run build && vite preview",
-		"typecheck": "npm run typegen && tsc -b"
+		"typecheck": "react-router typegen && tsc -b",
+		"test": "vitest run --passWithNoTests"
 	},
 	"type": "module"
 }
