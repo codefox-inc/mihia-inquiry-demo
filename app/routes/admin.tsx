@@ -4,6 +4,7 @@ import type { Route } from "./+types/admin";
 import { getDb } from "~/db/client";
 import { inquiries } from "~/db/schema";
 import { isValidStatus } from "~/lib/validation";
+import { formatJst } from "~/lib/datetime";
 import { STATUSES, STATUS_BADGE_CLASS } from "~/lib/constants";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
@@ -97,7 +98,7 @@ export default function Admin() {
 								<TableCell>
 									<Badge className={STATUS_BADGE_CLASS[row.status]}>{row.status}</Badge>
 								</TableCell>
-								<TableCell>{row.createdAt}</TableCell>
+								<TableCell>{formatJst(row.createdAt)}</TableCell>
 							</TableRow>
 						))
 					)}
