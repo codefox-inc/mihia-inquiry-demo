@@ -1,4 +1,4 @@
-import { Form, Link, data, redirect, useLoaderData } from "react-router";
+import { Form, Link, data, redirect, useLoaderData, useSearchParams } from "react-router";
 import { eq } from "drizzle-orm";
 import type { Route } from "./+types/admin-detail";
 import { getDb } from "~/db/client";
@@ -37,15 +37,20 @@ export async function action({ request, params, context }: Route.ActionArgs) {
 
 	const db = getDb(context.cloudflare.env);
 	await db.update(inquiries).set({ status }).where(eq(inquiries.id, id));
-	throw redirect(`/admin/${id}`);
+	// フォームの action に付与した絞り込みクエリを保持したまま詳細へ戻す
+	const search = new URL(request.url).search;
+	throw redirect(`/admin/${id}${search}`);
 }
 
 export default function AdminDetail() {
 	const { row } = useLoaderData<typeof loader>();
+	const [searchParams] = useSearchParams();
+	const qs = searchParams.toString();
+	const suffix = qs ? `?${qs}` : "";
 
 	return (
 		<main className="mx-auto max-w-2xl p-6">
-			<Link to="/admin" className="text-sm text-blue-600 underline">
+			<Link to={`/admin${suffix}`} className="text-sm text-blue-600 underline">
 				← 一覧へ戻る
 			</Link>
 			<Card className="mt-4">
@@ -67,7 +72,11 @@ export default function AdminDetail() {
 					</p>
 					<p className="whitespace-pre-wrap border-t pt-3">{row.body}</p>
 
-					<Form method="post" className="flex items-center gap-2 border-t pt-4">
+					<Form
+						method="post"
+						action={`/admin/${row.id}${suffix}`}
+						className="flex items-center gap-2 border-t pt-4"
+					>
 						<label htmlFor="status" className="text-sm font-medium">
 							ステータス変更:
 						</label>

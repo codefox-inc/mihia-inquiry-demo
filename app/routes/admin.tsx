@@ -41,6 +41,9 @@ export default function Admin() {
 	const { rows } = useLoaderData<typeof loader>();
 	const [searchParams] = useSearchParams();
 	const current = searchParams.get("status") ?? "";
+	// 詳細→一覧の戻りで絞り込みを保持するため、現在のクエリを詳細リンクに引き継ぐ
+	const qs = searchParams.toString();
+	const suffix = qs ? `?${qs}` : "";
 
 	return (
 		<main className="mx-auto max-w-4xl p-6">
@@ -89,7 +92,7 @@ export default function Admin() {
 						rows.map((row) => (
 							<TableRow key={row.id}>
 								<TableCell>
-									<Link to={`/admin/${row.id}`} className="text-blue-600 underline">
+									<Link to={`/admin/${row.id}${suffix}`} className="text-blue-600 underline">
 										{row.subject}
 									</Link>
 								</TableCell>
