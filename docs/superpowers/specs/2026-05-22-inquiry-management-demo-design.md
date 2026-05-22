@@ -90,9 +90,10 @@ D1 テーブル `inquiries`（Drizzle スキーマで定義）
 
 - Tailwind CSS v4（CSS-first）+ shadcn/ui のコンポーネントで最小手数で構築。
 - shadcn は React Router 用 init（import は `~/components/ui/*`）でセットアップする。
-- 使用コンポーネント例: Button / Input / Textarea / Select / Table / Badge / Card。
-- ステータスは Badge で色分け（未対応＝グレー／対応中＝青／完了＝緑）。
-- 一覧は Table、登録フォームは Input/Textarea/Select で構成。
+- 使用コンポーネント例: Button / Input / Textarea / Table / Badge / Card。
+- カテゴリ／ステータスの選択は **native `<select>`**（Tailwind で Input と質感を揃える）で実装する。shadcn の Select は Radix の制御コンポーネントで `<Form method="post">` の素のフォーム送信に値が載りにくいため。
+- ステータスは Badge で色分け（未対応＝グレー／対応中＝青／完了＝緑。`border-transparent` を付けて枠線が浮かないようにする）。
+- 一覧は Table、登録フォームは Input/Textarea/native select で構成。
 
 ## 7. エラーハンドリング
 
