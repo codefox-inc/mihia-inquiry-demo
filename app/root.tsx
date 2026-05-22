@@ -33,7 +33,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 			</head>
-			<body>
+			<body className="min-h-screen bg-gray-50 dark:bg-gray-950">
+				<header className="border-b bg-white dark:bg-gray-900">
+					<div className="mx-auto flex max-w-4xl items-center gap-6 p-4">
+						<Link to="/" className="font-bold">
+							問い合わせ管理（デモ）
+						</Link>
+						<nav className="flex gap-4 text-sm text-muted-foreground">
+							<Link to="/" className="hover:underline">
+								登録
+							</Link>
+							<Link to="/admin" className="hover:underline">
+								一覧
+							</Link>
+						</nav>
+					</div>
+				</header>
 				{children}
 				<ScrollRestoration />
 				<Scripts />
