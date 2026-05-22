@@ -15,7 +15,7 @@
 		{
 			"binding": "DB",
 			"database_name": "mihia-inquiry",
-			"database_id": "00000000-0000-0000-0000-000000000000",
+			"database_id": "37292ee3-e6ee-444c-8317-c511d3c91135",
 			"migrations_dir": "drizzle/migrations"
 		}
 	]
